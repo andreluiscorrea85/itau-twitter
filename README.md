@@ -1,2 +1,2 @@
 # itau-twitter
-Project related to the interview test to Itau
+Project related to the interview test of Itau.
