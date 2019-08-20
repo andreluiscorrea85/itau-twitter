@@ -51,6 +51,9 @@ import java.lang.reflect.MalformedParameterizedTypeException;
 import java.lang.reflect.MalformedParametersException;
 import java.lang.reflect.UndeclaredThrowableException;
 
+/**
+ * The type Global controller exception handler advice.
+ */
 @ControllerAdvice(basePackageClasses = ItauTwitterController.class)
 @RequestMapping(produces = {ItauTwitterConstants.APPLICATION_VND_ERROR_JSON} )
 public final class GlobalControllerExceptionHandlerAdviceImpl
@@ -58,17 +61,31 @@ public final class GlobalControllerExceptionHandlerAdviceImpl
 
 	private static final long serialVersionUID = 660364534414364552L;
 
+	/**
+	 * Instantiates a new Global controller exception handler advice.
+	 */
 	public GlobalControllerExceptionHandlerAdviceImpl() {
 		super();
 
 		this.initObject();
 	}
 
+	/**
+	 * Init object.
+	 */
 	@Override()
 	protected void initObject() {
 
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>       the type parameter
+	 * @param exception the exception
+	 *
+	 * @return the response entity
+	 */
 	@ExceptionHandler(
 		value={
 			Throwable.class,
@@ -170,16 +187,33 @@ public final class GlobalControllerExceptionHandlerAdviceImpl
 		return super.handleException(exception);
 	}
 
+	/**
+	 * Hash code int.
+	 *
+	 * @return the int
+	 */
 	@Override()
 	public int hashCode() {
 		return super.hashCode();
 	}
 
+	/**
+	 * Equals boolean.
+	 *
+	 * @param object the object
+	 *
+	 * @return the boolean
+	 */
 	@Override()
 	public boolean equals(final Object object) {
 		return super.equals(object);
 	}
 
+	/**
+	 * To string string.
+	 *
+	 * @return the string
+	 */
 	@Override()
 	public String toString() {
 		return super.toString();

@@ -5,9 +5,19 @@ import javax.persistence.Converter;
 import java.sql.Time;
 import java.time.LocalTime;
 
+/**
+ * The type Local time attribute converter.
+ */
 @Converter(autoApply = true)
 public class LocalTimeAttributeConverter implements AttributeConverter<LocalTime, Time> {
 
+	/**
+	 * Convert to database column time.
+	 *
+	 * @param attribute the attribute
+	 *
+	 * @return the time
+	 */
 	@Override()
 	public Time convertToDatabaseColumn(final LocalTime attribute) {
 		return (
@@ -17,6 +27,13 @@ public class LocalTimeAttributeConverter implements AttributeConverter<LocalTime
 		);
 	}
 
+	/**
+	 * Convert to entity attribute local time.
+	 *
+	 * @param databaseColumn the database column
+	 *
+	 * @return the local time
+	 */
 	@Override()
 	public LocalTime convertToEntityAttribute(final Time databaseColumn) {
 		return (

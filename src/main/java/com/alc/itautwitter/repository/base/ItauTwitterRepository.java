@@ -6,6 +6,12 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import java.io.Serializable;
 
+/**
+ * The interface Itau twitter repository.
+ *
+ * @param <T> the type parameter
+ * @param <I> the type parameter
+ */
 @NoRepositoryBean()
 public abstract interface ItauTwitterRepository<T extends ItauTwitterModel<I>, I extends Serializable>
 	extends ItauTwitterRepositoryCustom<T, I>, JpaRepository<T, I> {

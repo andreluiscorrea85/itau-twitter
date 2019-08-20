@@ -15,6 +15,11 @@ import java.lang.reflect.ParameterizedType;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * The type Abstract itau twitter model.
+ *
+ * @param <I> the type parameter
+ */
 @MappedSuperclass()
 @Access(value = AccessType.FIELD)
 public abstract class AbstractItauTwitterModel<I extends Serializable>
@@ -25,30 +30,50 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 	@JsonIgnore()
 	private static final long serialVersionUID = 8905497437209117978L;
 
+	/**
+	 * The Id class.
+	 */
 	@Transient()
 	@JsonIgnore()
 	protected Class<I> idClass;
 
+	/**
+	 * The Id.
+	 */
 	@JsonIgnore()
 	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected I id;
 
+	/**
+	 * The Creation date time.
+	 */
 	@JsonIgnore()
 	protected LocalDateTime creationDateTime;
 
+	/**
+	 * Instantiates a new Abstract itau twitter model.
+	 */
 	public AbstractItauTwitterModel() {
 		super();
 
 		this.initObject();
 	}
 
+	/**
+	 * Instantiates a new Abstract itau twitter model.
+	 *
+	 * @param id the id
+	 */
 	public AbstractItauTwitterModel(final I id) {
 		this();
 
 		this.setId(id);
 	}
 
+	/**
+	 * Init object.
+	 */
 	protected void initObject() {
 		this.createIdClass();
 
@@ -56,21 +81,43 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 		this.setCreationDateTime(LocalDateTime.now());
 	}
 
+	/**
+	 * Gets id.
+	 *
+	 * @return the id
+	 */
 	@Override()
 	public I getId() {
 		return this.id;
 	}
 
+	/**
+	 * Sets id.
+	 *
+	 * @param id the id
+	 */
 	@Override()
 	public void setId(final I id) {
 		this.id = id;
 	}
 
+	/**
+	 * Gets creation date time.
+	 *
+	 * @return the creation date time
+	 */
+	@Override()
 	public LocalDateTime getCreationDateTime() {
 		return this.creationDateTime;
 	}
 
-	protected void setCreationDateTime(final LocalDateTime creationDateTime) {
+	/**
+	 * Sets creation date time.
+	 *
+	 * @param creationDateTime the creation date time
+	 */
+	@Override()
+	public void setCreationDateTime(final LocalDateTime creationDateTime) {
 		if (this.creationDateTime == null) {
 			this.creationDateTime = (
 				(creationDateTime != null)
@@ -80,6 +127,9 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 		}
 	}
 
+	/**
+	 * Create id class.
+	 */
 	@JsonIgnore()
 	protected void createIdClass() {
 		try {
@@ -102,6 +152,11 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 		}
 	}
 
+	/**
+	 * Gets id class.
+	 *
+	 * @return the id class
+	 */
 	@Override()
 	public Class<I> getIdClass() {
 		if (! (Objects.nonNull(this.idClass)) ) {
@@ -111,16 +166,31 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 		return this.idClass;
 	}
 
+	/**
+	 * Sets id class.
+	 *
+	 * @param idClass the id class
+	 */
 	protected void setIdClass(final Class<I> idClass) {
 		this.idClass = idClass;
 	}
 
+	/**
+	 * Gets id as long.
+	 *
+	 * @return the id as long
+	 */
 	@Override()
 	@JsonIgnore()
 	public Long getIdAsLong() {
 		return ItauTwitterUtils.getIdAsLong(this.getId());
 	}
 
+	/**
+	 * Hash code int.
+	 *
+	 * @return the int
+	 */
 	@Override()
 	public int hashCode() {
 		Integer hashCode;
@@ -137,6 +207,13 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 		return hashCode;
 	}
 
+	/**
+	 * Equals boolean.
+	 *
+	 * @param object the object
+	 *
+	 * @return the boolean
+	 */
 	@Override()
 	public boolean equals(final Object object) {
 		final boolean equals;
@@ -159,6 +236,11 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 		return equals;
 	}
 
+	/**
+	 * To string string.
+	 *
+	 * @return the string
+	 */
 	@Override()
 	public String toString() {
 		final var stringBuilder = new StringBuilder();
@@ -172,11 +254,25 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 		return stringBuilder.toString();
 	}
 
+	/**
+	 * Clone abstract itau twitter model.
+	 *
+	 * @return the abstract itau twitter model
+	 *
+	 * @throws CloneNotSupportedException the clone not supported exception
+	 */
 	@Override()
 	public AbstractItauTwitterModel<?> clone() throws CloneNotSupportedException {
 		return (AbstractItauTwitterModel<?>) super.clone();
 	}
 
+	/**
+	 * Compare to int.
+	 *
+	 * @param object the object
+	 *
+	 * @return the int
+	 */
 	@Override()
 	public int compareTo(final ItauTwitterModel<I> object) {
 		final int compare;

@@ -8,12 +8,25 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
 
+/**
+ * The interface Tweet repository custom.
+ */
 @NoRepositoryBean()
 public abstract interface TweetRepositoryCustom
 	extends ItauTwitterRepositoryCustom<TweetModel, Long> {
 
+	/**
+	 * Gets total posts group by created at hour.
+	 *
+	 * @return the total posts group by created at hour
+	 */
 	public abstract List<CountPostsByCreatedAtHour> getTotalPostsGroupByCreatedAtHour();
 
+	/**
+	 * Gets total posts group by language.
+	 *
+	 * @return the total posts group by language
+	 */
 	public abstract List<CountPostsByLanguage> getTotalPostsGroupByLanguage();
 
 }

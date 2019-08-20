@@ -77,6 +77,8 @@
 
 		<version.springfoxSwaggerUI.dependency>2.9.2</version.springfoxSwaggerUI.dependency>
 
+		<version.apacheCommonsCollections4.dependency>4.4</version.apacheCommonsCollections4.dependency>
+
 		<version.hibernateJava8.dependency>5.4.4.Final</version.hibernateJava8.dependency>
 
 		<version.maven.plugin>2.7</version.maven.plugin>
@@ -275,6 +277,14 @@
 			<version>${version.springfoxSwaggerUI.dependency}</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>${version.apacheCommonsCollections4.dependency}</version>
+			<scope>compile</scope>
+		</dependency>
+
 
 	</dependencies>
 

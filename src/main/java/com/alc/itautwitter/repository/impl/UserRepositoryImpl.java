@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 
+/**
+ * The type User repository.
+ */
 @Repository()
 public class UserRepositoryImpl
 	extends AbstractItauTwitterRepositoryCustom<UserModel, Long>
@@ -14,6 +17,11 @@ public class UserRepositoryImpl
 
 	private static final long serialVersionUID = -2045885963850124986L;
 
+	/**
+	 * Instantiates a new User repository.
+	 *
+	 * @param entityManager the entity manager
+	 */
 	public UserRepositoryImpl(final EntityManager entityManager) {
 		super(entityManager);
 	}

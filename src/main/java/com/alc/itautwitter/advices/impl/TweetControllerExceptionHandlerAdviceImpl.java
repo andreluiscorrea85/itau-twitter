@@ -20,6 +20,9 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.Objects;
 
+/**
+ * The type Tweet controller exception handler advice.
+ */
 @ControllerAdvice(assignableTypes={TweetControllerImpl.class})
 //@RequestMapping(produces={GithubConstants.APPLICATION_VND_ERROR_JSON})
 @RequestMapping(produces={MediaType.APPLICATION_JSON_VALUE})
@@ -28,10 +31,22 @@ public final class TweetControllerExceptionHandlerAdviceImpl
 
 	private static final long serialVersionUID = 6522383187683708916L;
 
+	/**
+	 * Instantiates a new Tweet controller exception handler advice.
+	 */
 	public TweetControllerExceptionHandlerAdviceImpl() {
 		super();
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>        the type parameter
+	 * @param exception  the exception
+	 * @param webRequest the web request
+	 *
+	 * @return the response entity
+	 */
 	@ExceptionHandler(
 		value={
 			TweetNotFoundException.class,

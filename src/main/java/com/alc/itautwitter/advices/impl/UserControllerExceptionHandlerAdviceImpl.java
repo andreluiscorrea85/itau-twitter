@@ -20,6 +20,9 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.Objects;
 
+/**
+ * The type User controller exception handler advice.
+ */
 @ControllerAdvice(assignableTypes={UserControllerImpl.class})
 //@RequestMapping(produces={GithubConstants.APPLICATION_VND_ERROR_JSON})
 @RequestMapping(produces={MediaType.APPLICATION_JSON_VALUE})
@@ -28,10 +31,22 @@ public final class UserControllerExceptionHandlerAdviceImpl
 
 	private static final long serialVersionUID = -5718603865921483639L;
 
+	/**
+	 * Instantiates a new User controller exception handler advice.
+	 */
 	public UserControllerExceptionHandlerAdviceImpl() {
 		super();
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>        the type parameter
+	 * @param exception  the exception
+	 * @param webRequest the web request
+	 *
+	 * @return the response entity
+	 */
 	@ExceptionHandler(
 		value={
 			UserNotFoundException.class,

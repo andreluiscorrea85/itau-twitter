@@ -13,6 +13,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Tweet repository.
+ */
 @Repository()
 public class TweetRepositoryImpl
 	extends AbstractItauTwitterRepositoryCustom<TweetModel, Long>
@@ -20,10 +23,20 @@ public class TweetRepositoryImpl
 
 	private static final long serialVersionUID = -666943504397076955L;
 
+	/**
+	 * Instantiates a new Tweet repository.
+	 *
+	 * @param entityManager the entity manager
+	 */
 	public TweetRepositoryImpl(final EntityManager entityManager) {
 		super(entityManager);
 	}
 
+	/**
+	 * Gets total posts group by created at hour.
+	 *
+	 * @return the total posts group by created at hour
+	 */
 	@Override()
 	public List<CountPostsByCreatedAtHour> getTotalPostsGroupByCreatedAtHour() {
 		List<CountPostsByCreatedAtHour> countPostsByCreatedAtHourList;
@@ -59,7 +72,11 @@ public class TweetRepositoryImpl
 		return countPostsByCreatedAtHourList;
 	}
 
-
+	/**
+	 * Gets total posts group by language.
+	 *
+	 * @return the total posts group by language
+	 */
 	@Override()
 	public List<CountPostsByLanguage> getTotalPostsGroupByLanguage() {
 		List<CountPostsByLanguage> countPostsByLanguageList;

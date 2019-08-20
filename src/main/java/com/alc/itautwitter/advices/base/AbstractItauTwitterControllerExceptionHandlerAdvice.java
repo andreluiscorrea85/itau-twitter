@@ -18,20 +18,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The type Abstract itau twitter controller exception handler advice.
+ */
 public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 	extends Object
 	implements ItauTwitterControllerExceptionHandlerAdvice {
 
 	private static final long serialVersionUID = 7636157928345496256L;
 
+	/**
+	 * Instantiates a new Abstract itau twitter controller exception handler advice.
+	 */
 	public AbstractItauTwitterControllerExceptionHandlerAdvice() {
 		super();
 	}
 
+	/**
+	 * Init object.
+	 */
 	protected void initObject() {
 
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>       the type parameter
+	 * @param exception the exception
+	 *
+	 * @return the response entity
+	 */
 	@Override()
 	public <E extends Throwable> ResponseEntity<VndErrors> handleException(
 		final E exception
@@ -39,6 +56,15 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		return this.handleException(exception, null);
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>        the type parameter
+	 * @param exception  the exception
+	 * @param webRequest the web request
+	 *
+	 * @return the response entity
+	 */
 	@Override()
 	public <E extends Throwable> ResponseEntity<VndErrors> handleException(
 		final E exception,
@@ -47,6 +73,16 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		return this.handleException(exception, null, ItauTwitterConstants.ADVICES_PRODUCES_XML);
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>         the type parameter
+	 * @param exception   the exception
+	 * @param webRequest  the web request
+	 * @param producesXML the produces xml
+	 *
+	 * @return the response entity
+	 */
 	@Override()
 	public <E extends Throwable> ResponseEntity<VndErrors> handleException(
 		final E exception,
@@ -56,6 +92,17 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		return this.handleException(exception, webRequest, null, producesXML);
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>         the type parameter
+	 * @param exception   the exception
+	 * @param webRequest  the web request
+	 * @param httpStatus  the http status
+	 * @param producesXML the produces xml
+	 *
+	 * @return the response entity
+	 */
 	@Override()
 	public <E extends Throwable> ResponseEntity<VndErrors> handleException(
 		final E exception,
@@ -66,6 +113,19 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		return this.handleException(exception, webRequest, httpStatus, null, null, producesXML);
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>         the type parameter
+	 * @param exception   the exception
+	 * @param webRequest  the web request
+	 * @param httpStatus  the http status
+	 * @param logRef      the log ref
+	 * @param message     the message
+	 * @param producesXML the produces xml
+	 *
+	 * @return the response entity
+	 */
 	@Override()
 	public <E extends Throwable> ResponseEntity<VndErrors> handleException(
 		final E exception,
@@ -78,6 +138,21 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		return this.handleException(exception, null, null, null, httpStatus, logRef, message, producesXML);
 	}
 
+	/**
+	 * Handle exception response entity.
+	 *
+	 * @param <E>         the type parameter
+	 * @param exception   the exception
+	 * @param webRequest  the web request
+	 * @param httpBody    the http body
+	 * @param httpHeaders the http headers
+	 * @param httpStatus  the http status
+	 * @param logRef      the log ref
+	 * @param message     the message
+	 * @param producesXML the produces xml
+	 *
+	 * @return the response entity
+	 */
 	@Override()
 	public <E extends Throwable> ResponseEntity<VndErrors> handleException(
 		final E exception,
@@ -113,6 +188,14 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		);
 	}
 
+	/**
+	 * Gets verified exception.
+	 *
+	 * @param <E>       the type parameter
+	 * @param exception the exception
+	 *
+	 * @return the verified exception
+	 */
 	protected static <E extends Throwable> E getVerifiedException(final E exception) {
 		return (
 			(Objects.nonNull(exception))
@@ -121,6 +204,14 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		);
 	}
 
+	/**
+	 * Gets verified http headers.
+	 *
+	 * @param httpHeaders the http headers
+	 * @param producesXML the produces xml
+	 *
+	 * @return the verified http headers
+	 */
 	protected static HttpHeaders getVerifiedHttpHeaders(final HttpHeaders httpHeaders, final boolean producesXML) {
 		final HttpHeaders verifiedHttpHeaders;
 
@@ -140,6 +231,13 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		return verifiedHttpHeaders;
 	}
 
+	/**
+	 * Gets verified http status.
+	 *
+	 * @param httpStatus the http status
+	 *
+	 * @return the verified http status
+	 */
 	protected static HttpStatus getVerifiedHttpStatus(final HttpStatus httpStatus) {
 		return (
 			(Objects.nonNull(httpStatus))
@@ -148,6 +246,13 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		);
 	}
 
+	/**
+	 * Gets verified log ref.
+	 *
+	 * @param logRef the log ref
+	 *
+	 * @return the verified log ref
+	 */
 	protected static String getVerifiedLogRef(final String logRef) {
 		return (
 			(ItauTwitterUtils.validateString(logRef))
@@ -156,6 +261,15 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		);
 	}
 
+	/**
+	 * Gets verified message.
+	 *
+	 * @param <E>       the type parameter
+	 * @param exception the exception
+	 * @param message   the message
+	 *
+	 * @return the verified message
+	 */
 	protected static <E extends Throwable> String getVerifiedMessage(
 		final E exception,
 		final String message
@@ -171,6 +285,16 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		);
 	}
 
+	/**
+	 * Gets verified vnd error list.
+	 *
+	 * @param <E>       the type parameter
+	 * @param exception the exception
+	 * @param logRef    the log ref
+	 * @param message   the message
+	 *
+	 * @return the verified vnd error list
+	 */
 	protected static <E extends Throwable> List<VndError> getVerifiedVndErrorList(
 		final E exception,
 		final String logRef,
@@ -229,6 +353,17 @@ public abstract class AbstractItauTwitterControllerExceptionHandlerAdvice
 		return vndErrorList;
 	}
 
+	/**
+	 * Gets verified http body.
+	 *
+	 * @param <E>       the type parameter
+	 * @param exception the exception
+	 * @param httpBody  the http body
+	 * @param logRef    the log ref
+	 * @param message   the message
+	 *
+	 * @return the verified http body
+	 */
 	protected static <E extends Throwable> VndErrors getVerifiedHttpBody(
 		final E exception,
 		final VndErrors httpBody,

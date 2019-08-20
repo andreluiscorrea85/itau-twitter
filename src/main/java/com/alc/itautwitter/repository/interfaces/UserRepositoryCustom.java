@@ -4,6 +4,9 @@ import com.alc.itautwitter.model.impl.UserModel;
 import com.alc.itautwitter.repository.base.ItauTwitterRepositoryCustom;
 import org.springframework.data.repository.NoRepositoryBean;
 
+/**
+ * The interface User repository custom.
+ */
 @NoRepositoryBean()
 public abstract interface UserRepositoryCustom
 	extends ItauTwitterRepositoryCustom<UserModel, Long> {
