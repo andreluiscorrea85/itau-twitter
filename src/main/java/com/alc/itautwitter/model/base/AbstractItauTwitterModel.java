@@ -42,7 +42,7 @@ public abstract class AbstractItauTwitterModel<I extends Serializable>
 	 */
 	@JsonIgnore()
 	@Id()
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected I id;
 
 	/**

@@ -1,7 +1,9 @@
 package com.alc.itautwitter.service.base;
 
 import com.alc.itautwitter.model.base.ItauTwitterModel;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  * @param <T> the type parameter
  * @param <I> the type parameter
  */
+@Service()
 public abstract interface ItauTwitterService<T extends ItauTwitterModel<I>, I extends Serializable>
 	extends Serializable {
 
@@ -55,6 +58,7 @@ public abstract interface ItauTwitterService<T extends ItauTwitterModel<I>, I ex
 	 *
 	 * @return the t
 	 */
+	@Transactional()
 	public abstract T save(final T model);
 
 	/**
@@ -64,6 +68,7 @@ public abstract interface ItauTwitterService<T extends ItauTwitterModel<I>, I ex
 	 *
 	 * @return the t
 	 */
+	@Transactional()
 	public abstract T saveAndFlush(final T model);
 
 	/**
@@ -73,6 +78,7 @@ public abstract interface ItauTwitterService<T extends ItauTwitterModel<I>, I ex
 	 *
 	 * @return the list
 	 */
+	@Transactional()
 	public abstract List<T> saveAll(final Iterable<T> models);
 
 	/**
@@ -80,6 +86,7 @@ public abstract interface ItauTwitterService<T extends ItauTwitterModel<I>, I ex
 	 *
 	 * @param model the model
 	 */
+	@Transactional()
 	public abstract void delete(final T model);
 
 	/**
@@ -87,6 +94,7 @@ public abstract interface ItauTwitterService<T extends ItauTwitterModel<I>, I ex
 	 *
 	 * @param id the id
 	 */
+	@Transactional()
 	public abstract void deleteById(final I id);
 
 	/**

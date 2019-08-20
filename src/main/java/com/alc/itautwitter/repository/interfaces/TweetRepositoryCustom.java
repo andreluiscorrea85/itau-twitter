@@ -4,14 +4,14 @@ import com.alc.itautwitter.model.auxiliary.CountPostsByCreatedAtHour;
 import com.alc.itautwitter.model.auxiliary.CountPostsByLanguage;
 import com.alc.itautwitter.model.impl.TweetModel;
 import com.alc.itautwitter.repository.base.ItauTwitterRepositoryCustom;
-import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * The interface Tweet repository custom.
  */
-@NoRepositoryBean()
+@Repository()
 public abstract interface TweetRepositoryCustom
 	extends ItauTwitterRepositoryCustom<TweetModel, Long> {
 

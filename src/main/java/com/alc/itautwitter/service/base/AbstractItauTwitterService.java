@@ -14,7 +14,6 @@ import java.util.List;
  * @param <T> the type parameter
  * @param <I> the type parameter
  */
-@Transactional()
 public abstract class AbstractItauTwitterService<T extends ItauTwitterModel<I>, I extends Serializable>
 	extends Object
 	implements ItauTwitterService<T, I> {
@@ -111,10 +110,11 @@ public abstract class AbstractItauTwitterService<T extends ItauTwitterModel<I>, 
 	 *
 	 * @return the t
 	 */
+	@Transactional()
 	@Override()
 	public T save(final T model) {
 		return (
-			(ItauTwitterUtils.validateModelWithId(model))
+			(ItauTwitterUtils.validateModel(model, false, false))
 				? this.getRepository().save(model)
 				: null
 		);
@@ -127,10 +127,11 @@ public abstract class AbstractItauTwitterService<T extends ItauTwitterModel<I>, 
 	 *
 	 * @return the t
 	 */
+	@Transactional()
 	@Override()
 	public T saveAndFlush(final T model) {
 		return (
-			(ItauTwitterUtils.validateModelWithId(model))
+			(ItauTwitterUtils.validateModel(model, false, false))
 				? this.getRepository().saveAndFlush(model)
 				: null
 		);
@@ -143,6 +144,7 @@ public abstract class AbstractItauTwitterService<T extends ItauTwitterModel<I>, 
 	 *
 	 * @return the list
 	 */
+	@Transactional()
 	@Override()
 	public List<T> saveAll(final Iterable<T> models) {
 		return (
@@ -157,6 +159,7 @@ public abstract class AbstractItauTwitterService<T extends ItauTwitterModel<I>, 
 	 *
 	 * @param model the model
 	 */
+	@Transactional()
 	@Override()
 	public void delete(final T model) {
 		if (ItauTwitterUtils.validateModelWithId(model)) {
@@ -169,6 +172,7 @@ public abstract class AbstractItauTwitterService<T extends ItauTwitterModel<I>, 
 	 *
 	 * @param id the id
 	 */
+	@Transactional()
 	@Override()
 	public void deleteById(final I id) {
 		if (ItauTwitterUtils.validateIdOfModel(id)) {

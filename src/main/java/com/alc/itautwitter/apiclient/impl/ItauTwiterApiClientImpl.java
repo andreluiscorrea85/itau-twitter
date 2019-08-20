@@ -79,26 +79,24 @@ public final class ItauTwiterApiClientImpl
 	 */
 	public void loadTweets() {
 		try {
+			var tweetModelSet = new HashSet<TweetModel>();
+			var userModelSet = new HashSet<UserModel>();
+
 			for (var tag : ETags.getTagsList()) {
 				var query = new Query(tag);
 				var queryResult = Twitter4JUtils.getTwitterInstance().search(query);
 
-				while ((query = queryResult.nextQuery()) != null) {
+				if (queryResult.hasNext()) {
 					var tweetsStatus = queryResult.getTweets();
-
-					var tweetModelSet = new HashSet<TweetModel>();
-					var userModelSet = new HashSet<UserModel>();
 
 					for (var tweetStatusIteration : tweetsStatus) {
 						var tweetModel = Twitter4JUtils.convertToTweetModel(tweetStatusIteration);
 						var userModel = tweetModel.getUserModel();
 
-						tweetModelSet.add(tweetModel);
-						userModelSet.add(userModel);
+						userModel = this.getUserService().save(userModel);
+						tweetModel.setUserModel(userModel);
+						tweetModel = this.getTweetService().save(tweetModel);
 					}
-
-					this.getUserService().saveAll(userModelSet);
-					this.getTweetService().saveAll(tweetModelSet);
 				}
 			}
 		}

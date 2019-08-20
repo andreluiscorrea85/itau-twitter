@@ -156,7 +156,7 @@ public class TweetControllerImpl
 
 		var tweetModelNew = this.getService().save(tweetModel);
 
-		return new ResponseEntity<>(tweetModelNew, HttpStatus.OK);
+		return new ResponseEntity<>(tweetModelNew, HttpStatus.CREATED);
 	}
 
 	/**

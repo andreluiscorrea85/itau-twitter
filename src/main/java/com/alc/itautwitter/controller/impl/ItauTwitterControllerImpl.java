@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import twitter4j.TwitterException;
@@ -77,7 +77,7 @@ public class ItauTwitterControllerImpl
 	 *
 	 * @throws TwitterException the twitter exception
 	 */
-	@GetMapping(
+	@PostMapping(
 		name = "loadTweets",
 		value = {"/loadTweets", "/loadTweets/"},
 		produces = MediaType.APPLICATION_JSON_VALUE
@@ -85,7 +85,7 @@ public class ItauTwitterControllerImpl
 	public ResponseEntity loadTweets() throws TwitterException {
 		new ItauTwiterApiClientImpl(this.getUserService(), this.getTweetService()).loadTweets();
 
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity(HttpStatus.CREATED);
 	}
 
 }

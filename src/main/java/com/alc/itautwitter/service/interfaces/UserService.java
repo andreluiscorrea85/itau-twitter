@@ -1,5 +1,6 @@
 package com.alc.itautwitter.service.interfaces;
 
+import com.alc.itautwitter.model.auxiliary.ResumedUser;
 import com.alc.itautwitter.model.impl.UserModel;
 import com.alc.itautwitter.service.base.ItauTwitterService;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,6 @@ public abstract interface UserService
 	 *
 	 * @return the list
 	 */
-	public abstract List<UserModel> findTop5OrderByFollowersCountDesc();
+	public abstract List<ResumedUser> findTop5OrderByFollowersCountDesc();
 
 }

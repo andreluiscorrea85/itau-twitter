@@ -8,8 +8,7 @@ import com.alc.itautwitter.repository.base.AbstractItauTwitterRepositoryCustom;
 import com.alc.itautwitter.repository.interfaces.TweetRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import java.time.LocalTime;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +22,8 @@ public class TweetRepositoryImpl
 
 	private static final long serialVersionUID = -666943504397076955L;
 
-	/**
-	 * Instantiates a new Tweet repository.
-	 *
-	 * @param entityManager the entity manager
-	 */
-	public TweetRepositoryImpl(final EntityManager entityManager) {
-		super(entityManager);
+	public TweetRepositoryImpl() {
+		super();
 	}
 
 	/**
@@ -43,24 +37,26 @@ public class TweetRepositoryImpl
 
 		final var stringBuilder = new StringBuilder();
 
-		stringBuilder.append(	" SELECT " 								).append(" \n");
-		stringBuilder.append(		" t.createdAt AS createdAtHour, " 	).append(" \n");
-		stringBuilder.append(		" COUNT(t) AS total " 				).append(" \n");
-		stringBuilder.append(	" FROM " 								).append(" \n");
-		stringBuilder.append(		" TweetModel AS t " 				).append(" \n");
-		stringBuilder.append(	" GROUP BY " 							).append(" \n");
-		stringBuilder.append(		" t.createdAt " 				).append(" \n");
-		stringBuilder.append(	" ORDER BY " 							).append(" \n");
-		stringBuilder.append(		" t.createdAt DESC " 			).append(" \n");
+		stringBuilder.append(	" SELECT " 												).append(" \n");
+		stringBuilder.append(		" HOUR(T.AT003_CREATED_AT) AS CREATED_AT_HOUR, " 	).append(" \n");
+		stringBuilder.append(		" COUNT(T.PK003_ID) AS TOTAL " 						).append(" \n");
+		stringBuilder.append(	" FROM " 												).append(" \n");
+		stringBuilder.append(		" TB003_TWEETS AS T " 								).append(" \n");
+		stringBuilder.append(	" GROUP BY " 											).append(" \n");
+		stringBuilder.append(		" HOUR(T.AT003_CREATED_AT) "						).append(" \n");
+		stringBuilder.append(	" ORDER BY " 											).append(" \n");
+		stringBuilder.append(		" CREATED_AT_HOUR DESC " 							).append(" \n");
 
-		List<Object[]> results = this.getEntityManager().createQuery(stringBuilder.toString()).getResultList();
+		var query = this.getEntityManager().createNativeQuery(stringBuilder.toString());
+
+		List<Object[]> results = query.getResultList();
 
 		if (ItauTwitterUtils.validateList(results)) {
 			countPostsByCreatedAtHourList = new ArrayList<>();
 
 			for (var resultIteration : results) {
-				var createdAtHour = (LocalTime) resultIteration[0];
-				var count = ((Long) resultIteration[1]).longValue();
+				var createdAtHour = ItauTwitterUtils.convertToLocalTime((Integer) resultIteration[0]);
+				var count = ItauTwitterUtils.convertToLong((BigInteger) resultIteration[1]);
 
 				countPostsByCreatedAtHourList.add(new CountPostsByCreatedAtHour(count, createdAtHour));
 			}
@@ -83,24 +79,26 @@ public class TweetRepositoryImpl
 
 		final var stringBuilder = new StringBuilder();
 
-		stringBuilder.append(	" SELECT " 					).append(" \n");
-		stringBuilder.append(		" t.lang AS language, " ).append(" \n");
-		stringBuilder.append(		" COUNT(t) AS total " 	).append(" \n");
-		stringBuilder.append(	" FROM " 					).append(" \n");
-		stringBuilder.append(		" TweetModel AS t " 	).append(" \n");
-		stringBuilder.append(	" GROUP BY " 				).append(" \n");
-		stringBuilder.append(		" t.lang " 				).append(" \n");
-		stringBuilder.append(	" ORDER BY " 				).append(" \n");
-		stringBuilder.append(		" t.lang DESC " 		).append(" \n");
+		stringBuilder.append(	" SELECT " 										).append(" \n");
+		stringBuilder.append(		" T.AT003_LANGUAGE_LOCALE AS LANGUAGE, " 	).append(" \n");
+		stringBuilder.append(		" COUNT(T.PK003_ID) AS TOTAL " 				).append(" \n");
+		stringBuilder.append(	" FROM " 										).append(" \n");
+		stringBuilder.append(		" TB003_TWEETS AS T " 						).append(" \n");
+		stringBuilder.append(	" GROUP BY " 									).append(" \n");
+		stringBuilder.append(		" T.AT003_LANGUAGE_LOCALE " 				).append(" \n");
+		stringBuilder.append(	" ORDER BY " 									).append(" \n");
+		stringBuilder.append(		" LANGUAGE DESC " 							).append(" \n");
 
-		List<Object[]> results = this.getEntityManager().createQuery(stringBuilder.toString()).getResultList();
+		var query = this.getEntityManager().createNativeQuery(stringBuilder.toString());
+
+		List<Object[]> results = query.getResultList();
 
 		if (ItauTwitterUtils.validateList(results)) {
 			countPostsByLanguageList = new ArrayList<>();
 
 			for (var resultIteration : results) {
-				var language = (String) resultIteration[0];
-				var count = ((Long) resultIteration[1]).longValue();
+				var language = ((String) resultIteration[0]);
+				var count = ItauTwitterUtils.convertToLong((BigInteger) resultIteration[1]);
 
 				countPostsByLanguageList.add(new CountPostsByLanguage(count, language));
 			}

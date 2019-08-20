@@ -66,7 +66,7 @@ public class TweetModel
 		nullable = false,
 		insertable = true,
 		updatable = true,
-		unique = true
+		unique = false
 	)
 	@Basic(
 		fetch= FetchType.EAGER,
@@ -91,7 +91,7 @@ public class TweetModel
 	@JsonAlias("text")
 	@Column(
 		name = "AT003_TEXT",
-		length = 500,
+		length = 4000,
 		nullable = false,
 		insertable = true,
 		updatable = true,

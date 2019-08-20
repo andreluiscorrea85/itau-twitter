@@ -1,6 +1,7 @@
 package com.alc.itautwitter.controller.impl;
 
 import com.alc.itautwitter.controller.base.AbstractItauTwitterModelController;
+import com.alc.itautwitter.model.auxiliary.ResumedUser;
 import com.alc.itautwitter.model.impl.UserModel;
 import com.alc.itautwitter.service.base.ItauTwitterService;
 import com.alc.itautwitter.service.interfaces.UserService;
@@ -66,7 +67,7 @@ public class UserControllerImpl
 		value = {"/top5Users", "/top5Users/"},
 		produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<List<UserModel>> findTop5UserModelOrderByFollowersCountDesc() throws TwitterException {
+	public ResponseEntity<List<ResumedUser>> findTop5UserModelOrderByFollowersCountDesc() throws TwitterException {
 		var userModelList =  this.getService().findTop5OrderByFollowersCountDesc();
 
 		return new ResponseEntity<>(userModelList, HttpStatus.OK);

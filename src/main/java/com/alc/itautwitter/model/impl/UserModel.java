@@ -67,7 +67,7 @@ public class UserModel
 		nullable = false,
 		insertable = true,
 		updatable = true,
-		unique = true
+		unique = false
 	)
 	@Basic(
 		fetch = FetchType.EAGER,
@@ -424,7 +424,7 @@ public class UserModel
 		hashCode = super.hashCode();
 
 		hashCode = ((prime * hashCode) + (Objects.hash(this.getUserId())));
-		hashCode = ((prime * hashCode) + (Objects.hash(this.getScreenName())));
+		//hashCode = ((prime * hashCode) + (Objects.hash(this.getScreenName())));
 
 		return hashCode;
 	}
@@ -452,11 +452,7 @@ public class UserModel
 		else {
 			final var otherObject = (UserModel) object;
 
-			if (! (this.getUserId().equals(otherObject.getUserId()))) {
-				equals = false;
-			}
-
-			equals = this.getScreenName().equalsIgnoreCase(otherObject.getScreenName());
+			equals = this.getUserId().equals(otherObject.getUserId());
 		}
 
 		return equals;
@@ -471,14 +467,14 @@ public class UserModel
 	public String toString() {
 		final var stringBuilder = new StringBuilder();
 
-		stringBuilder.append(	this.getClass().getSimpleName()	);
-		stringBuilder.append(		"["							);
-		stringBuilder.append(			"id="					);
-		stringBuilder.append(			this.getId()			);
-		stringBuilder.append(			", "					);
-		stringBuilder.append(			"screenName="			);
-		stringBuilder.append(			this.getScreenName()	);
-		stringBuilder.append(		"]"							);
+		stringBuilder.append(	this.getClass().getSimpleName()				);
+		stringBuilder.append(		"["										);
+		stringBuilder.append(			"id="								);
+		stringBuilder.append(			this.getId()						);
+		stringBuilder.append(			", "								);
+		stringBuilder.append(			"screenName="						);
+		stringBuilder.append(			this.getFormattedUserScreenName()	);
+		stringBuilder.append(		"]"										);
 
 		return stringBuilder.toString();
 	}

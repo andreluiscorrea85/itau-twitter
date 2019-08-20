@@ -1,5 +1,6 @@
 package com.alc.itautwitter.service.impl;
 
+import com.alc.itautwitter.model.auxiliary.ResumedUser;
 import com.alc.itautwitter.model.impl.UserModel;
 import com.alc.itautwitter.repository.interfaces.UserRepository;
 import com.alc.itautwitter.service.base.AbstractItauTwitterService;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -16,7 +16,6 @@ import java.util.List;
  */
 @Service()
 @Primary()
-@Transactional()
 public class UserServiceImpl
 	extends AbstractItauTwitterService<UserModel, Long>
 	implements UserService {
@@ -47,7 +46,7 @@ public class UserServiceImpl
 	 * @return the list
 	 */
 	@Override()
-	public List<UserModel> findTop5OrderByFollowersCountDesc() {
+	public List<ResumedUser> findTop5OrderByFollowersCountDesc() {
 		return this.getRepository().findTop5OrderByFollowersCountDesc();
 	}
 

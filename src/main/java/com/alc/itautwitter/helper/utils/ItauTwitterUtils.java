@@ -5,14 +5,19 @@ import com.alc.itautwitter.model.base.ItauTwitterModel;
 import org.apache.commons.collections4.IterableUtils;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * The type Itau twitter utils.
@@ -78,7 +83,10 @@ public final class ItauTwitterUtils
 	) {
 			return (
 				(Objects.nonNull(model)) &&
-				(ItauTwitterUtils.validateIdOfModel(model.getId(), validateIdGraterThanZero))
+				(
+					(! (validateId) ) ||
+					(ItauTwitterUtils.validateIdOfModel(model.getId(), validateIdGraterThanZero))
+				)
 			);
 	}
 
@@ -182,6 +190,10 @@ public final class ItauTwitterUtils
 	 */
 	public static final <T extends Object> boolean validateList(final List<?> list) {
 		return ( (Objects.nonNull(list)) && (list.size() > 0) );
+	}
+
+	public static final <T extends Object> boolean validateSet(final Set<?> set) {
+		return ( (Objects.nonNull(set)) && set.size() > 0 );
 	}
 
 	/**
@@ -295,6 +307,22 @@ public final class ItauTwitterUtils
 		);
 	}
 
+	public static final LocalDate convertToLocalDate(final java.sql.Date from) {
+		return (
+			(from != null)
+				? from.toLocalDate()
+				: null
+		);
+	}
+
+	public static final LocalDate convertToLocalDate(final Timestamp from) {
+		return (
+			(from != null)
+				? from.toLocalDateTime().toLocalDate()
+				: null
+		);
+	}
+
 	/**
 	 * Convert to local date time local date time.
 	 *
@@ -306,6 +334,54 @@ public final class ItauTwitterUtils
 		return (
 			(from != null)
 				? from.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+				: null
+		);
+	}
+
+	public static final LocalDateTime convertToLocalDateTime(final java.sql.Date from) {
+		return (
+			(from != null)
+				? from.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+				: null
+		);
+	}
+
+	public static final LocalDateTime convertToLocalDateTime(final Timestamp from) {
+		return (
+			(from != null)
+				? from.toLocalDateTime()
+				: null
+		);
+	}
+
+	public static final LocalTime convertToLocalTime(final Timestamp from) {
+		return (
+			(from != null)
+			? from.toLocalDateTime().toLocalTime()
+			: null
+		);
+	}
+
+	public static final LocalTime convertToLocalTime(final Time from) {
+		return (
+			(from != null)
+				? from.toLocalTime()
+				: null
+		);
+	}
+
+	public static final LocalTime convertToLocalTime(final Integer from) {
+		return (
+			(from != null)
+				? LocalTime.of(from, 0, 0)
+				: null
+		);
+	}
+
+	public static final Long convertToLong(final BigInteger from) {
+		return (
+			(from != null)
+				? from.longValue()
 				: null
 		);
 	}
